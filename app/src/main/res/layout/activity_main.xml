@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Reproductor">
+
+    <LinearLayout
+        android:id="@+id/custom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_500">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:minWidth="0dp"
+            android:paddingStart="5dp"
+            android:onClick="onBackClick"
+            app:icon="@drawable/anterior"
+            app:iconSize="15dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:paddingEnd="10dp"
+            android:layout_weight="0.10"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:background="@null"
+            android:id="@+id/orders"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_weight="0.25"
+            android:prompt="@string/order"
+            android:backgroundTint="@color/white"
+            android:layout_toEndOf="@id/back"/>
+
+        <Spinner
+            android:background="@null"
+            android:id="@+id/groups"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_weight="0.25"
+            android:backgroundTint="@color/white"
+            android:prompt="@string/group"
+            android:layout_toEndOf="@id/orders"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/lists"
+            android:layout_width="wrap_content"
+            android:minWidth="0dp"
+            android:paddingStart="10dp"
+            android:onClick="onListClick"
+            app:icon="@drawable/lista"
+            app:iconSize="15dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:paddingEnd="10dp"
+            android:layout_weight="0.10"
+            android:layout_toEndOf="@id/groups"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/search"
+            android:layout_width="wrap_content"
+            android:minWidth="0dp"
+            android:paddingStart="10dp"
+            android:onClick="onSearchClick"
+            app:icon="@drawable/search"
+            app:iconSize="15dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:paddingEnd="10dp"
+            android:layout_weight="0.10"
+            android:layout_toEndOf="@id/lists"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/download"
+            android:layout_width="wrap_content"
+            android:minWidth="0dp"
+            android:paddingStart="10dp"
+            android:onClick="onDownloadClick"
+            app:icon="@drawable/download"
+            app:iconSize="15dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:paddingEnd="10dp"
+            android:layout_weight="0.10"
+            android:layout_toEndOf="@id/search"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_songs"
+            android:layout_width="wrap_content"
+            android:minWidth="0dp"
+            android:paddingStart="10dp"
+            android:onClick="onAddClick"
+            app:icon="@drawable/add"
+            app:iconSize="15dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:paddingEnd="10dp"
+            android:layout_weight="0.10"
+            android:layout_toEndOf="@id/download"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/empty"/>
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_empty"
+        android:layout_centerHorizontal="true"
+        android:onClick="onButtonAdd"
+        android:text="@string/add" />
+
+    <ListView
+        android:id="@+id/list1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stackFromBottom="true"
+        android:layout_below="@id/custom_menu"
+        android:scrollingCache="true"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_above="@id/rel1"/>
+
+    <RelativeLayout
+        android:id="@+id/rel1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:id="@+id/separator1"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="1dp"
+            android:background="@color/white"/>
+
+        <TextView
+            android:id="@+id/text_song"
+            android:layout_width="300dp"
+            android:text="@string/song"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/separator1"
+            android:layout_centerHorizontal="true"/>
+
+        <SeekBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:max="1000"
+            android:progressTint="@color/purple_200"
+            android:thumbTint="@color/purple_200"
+            android:layout_below="@id/text_song"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/time1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="0dp"
+            android:text="@string/time"
+            android:layout_below="@id/text_song"
+            android:layout_toStartOf="@id/progress" />
+
+        <TextView
+            android:id="@+id/time2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_song"
+            android:text="@string/time"
+            android:layout_toEndOf="@id/progress" />
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="3dp"
+            android:minWidth="0dp"
+            android:onClick="onButtonBack"
+            app:icon="@drawable/atras"
+            app:iconSize="15dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="10dp"
+            android:layout_toStartOf="@id/btn_pause"
+            android:layout_below="@id/progress"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_pause"
+            android:layout_width="wrap_content"
+            android:minWidth="0dp"
+            android:paddingStart="30dp"
+            android:onClick="onButtonPause"
+            app:icon="@drawable/play"
+            app:iconSize="15dp"
+            android:paddingEnd="20dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/progress"/>
+
+        <Button
+            android:id="@+id/btn_forw"
+            android:layout_width="wrap_content"
+            android:minWidth="0dp"
+            android:onClick="onButtonForw"
+            app:icon="@drawable/proximo"
+            app:iconSize="15dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="10dp"
+            android:layout_marginStart="3dp"
+            android:layout_toRightOf="@id/btn_pause"
+            android:layout_below="@id/progress"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_loop"
+            android:layout_width="wrap_content"
+            android:minWidth="0dp"
+            android:onClick="onButtonLoop"
+            app:icon="@drawable/repeticion"
+            app:iconSize="20dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@id/btn_forw"
+            android:layout_below="@id/progress"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_random"
+            android:layout_width="wrap_content"
+            android:minWidth="0dp"
+            android:onClick="onButtonRandom"
+            app:icon="@drawable/random"
+            app:iconSize="20dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_toLeftOf="@id/btn_back"
+            android:layout_below="@id/progress"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
